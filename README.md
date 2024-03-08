@@ -19,10 +19,7 @@ You can view and interact with the map [here](https://anthonykminsu.github.io/Ne
 ---
 
 <img width="720" alt="Screen Shot 2024-03-08 at 12 13 36 AM" src="https://github.com/anthonykminsu/NewTmapApplication/assets/77130958/a4fbf9c6-c90e-4745-bc2e-fa387d4faba6">
-<<<<<<< HEAD
 
-=======
->>>>>>> 4a9bd996908f505cf29aa5c8a38d9843d4b93f48
 - Streets Layer: Provides detailed street maps for easy navigation. The zoom level in this case also goes over 14 and also had unlimited min zoom.
 - Location: Seattle, Washington
 
@@ -31,9 +28,7 @@ You can view and interact with the map [here](https://anthonykminsu.github.io/Ne
 
 <img width="720" alt="Screen Shot 2024-03-08 at 12 13 41 AM" src="https://github.com/anthonykminsu/NewTmapApplication/assets/77130958/5f17f0cd-6bea-4571-9e51-decaccae2e77">
 <<<<<<< HEAD
-
-=======
->>>>>>> 4a9bd996908f505cf29aa5c8a38d9843d4b93f48
+  
 - Urban Areas Layer: Derived from Seattle’s open data, highlighting urban centers. The zoom level in this case is 12-22 for the best view.
 - Location: Seattle, Washington
 
@@ -42,8 +37,6 @@ You can view and interact with the map [here](https://anthonykminsu.github.io/Ne
 <img width="720" alt="Screen Shot 2024-03-08 at 12 14 09 AM" src="https://github.com/anthonykminsu/NewTmapApplication/assets/77130958/dea1f687-f7c4-4038-a701-d33fc3a7adcb">
 <<<<<<< HEAD
 
-=======
->>>>>>> 4a9bd996908f505cf29aa5c8a38d9843d4b93f48
 - Black History Month Theme Layer: Emphasizes locations significant to Black History Month. The max zoom level in this is 11 and the min zoom is 3.
 - Location: Redmond, Oregon
 

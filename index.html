@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Map Design</title>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link href="https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.css" rel="stylesheet">
+      <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.css" />
+      <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
+      <style type="text/css">
+         body {
+         margin: 0;
+         padding: 0;
+         }
+         #info {
+         position: absolute;
+         top: 0;
+         left: 0;
+         width: 350px;
+         margin: 10px;
+         padding: 10px;
+         background-color: #ffffff;
+         border-radius: 5px;
+         font-family: Arial, Helvetica, sans-serif;
+         font-size: 12px;
+         line-height: 1.5;
+         color: #000000;
+         z-index: 1;
+         }
+         #map {
+         position: absolute;
+         top: 0;
+         bottom: 0;
+         width: 100%;
+         }
+         /* the style of the layer control menu */
+         #menu {
+         background: #fff;
+         position: absolute;
+         z-index: 1;
+         top: 10px;
+         right: 10px;
+         border-radius: 3px;
+         width: 120px;
+         border: 1px solid rgba(0, 0, 0, 0.4);
+         font-family: 'Open Sans', sans-serif;
+         }
+         /* each layer on the menu */
+         #menu a {
+         font-size: 13px;
+         color: #404040;
+         display: block;
+         margin: 0;
+         padding: 0;
+         padding: 10px;
+         text-decoration: none;
+         border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+         text-align: center;
+         }
+         /* the last item of the layer items will not include a seperator */
+         #menu a:last-child {
+         border: none;
+         }
+         /* change color and background color while a pointer is on an hybrid link. */
+         #menu a:hover {
+         background-color: #f8f8f8;
+         color: #404040;
+         }
+         #menu a.active {
+         background-color: #3887be;
+         color: #ffffff;
+         }
+         #menu a.active:hover {
+         background: #3074a4;
+         }
+         .top-right {
+         position: absolute;
+         top: 10px;
+         right: 10px;
+         background: white;
+         padding: 10px;
+         box-shadow: 0 1px 5px rgba(0,0,0,0.2);
+         border-radius: 3px;
+         font-family: Arial, sans-serif;
+         }
+         .layer-btn {
+         display: block;
+         margin-bottom: 5px;
+         padding: 5px;
+         background: #f8f8f8;
+         border: none;
+         border-radius: 3px;
+         text-align: left;
+         width: 100%;
+         cursor: pointer;
+         }
+         .layer-btn:hover,
+         .layer-btn.active {
+         background: #e8e8e8;
+         }
+         #layer-control hr {
+         margin-top: 10px;
+         margin-bottom: 10px;
+         }
+      </style>
+      <script src="https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.js"></script>
+   </head>
+   <body>
+      <div id="info">
+         <h3>Tile Mapping Application: Observing Different Layers</h3>
+         <h4> Anthony Kim | University of Washington </h4>
+         <!-- Introduction to the participatory mapping solution -->
+         <p>
+            This web map attempts to create a complex user-interactive map through the use of the Mapbox GL JS package, creating a window into Seattle's dynamic urban landscape.
+            Two layers are foundational that make up the application’s design: "Streets" provides a more in-depth view of the road network while the default "Base Map"
+            has a more dark and simple appearance. The map also acquires a unique "Urban Areas" layer that is derived from the City of Seattle’s open-source platform.
+            This layer is placed over delimited zones and marks the city's urban centers, villages, and manufacturing and industrial areas within the Seattle area.
+            You can essentially acquire insight into the complex classifications of urban regions when it comes to the Pacific Northwest landscape. Additionally,
+            by adding a "Black History Month Theme" overlay to the map, it acknowledges cultural narratives and probably highlights historical and cultural landmarks
+            that are relevant to the yearly Black History Month celebration. The specific colors also represent certain meanings: black, red, yellow, and green,
+            which symbolize unity and pride. To get customized styles, users can explore different customizations by toggling the different levels, located in the
+            top right-hand corner of the application.
+
+         </p>
+      </div>
+      <div id="layer-control" class="map-overlay top-right">
+         <div id="map-types">
+            <button id="toggle-base-map" class="layer-btn">Base Map</button>
+            <button id="toggle-streets" class="layer-btn">Streets</button>
+         </div>
+         <hr>
+         <div id="thematic-layers">
+            <button id="toggle-urban-areas" class="layer-btn">Urban Areas</button>
+            <button id="toggle-black-history-month-theme" class="layer-btn">Black History Month Theme</button>
+         </div>
+      </div>
+      <nav id="menu"></nav>
+      <div id='map'></div>
+      <script type="text/javascript">
+         mapboxgl.accessToken =
+             'pk.eyJ1IjoiamFrb2J6aGFvIiwiYSI6ImNpcms2YWsyMzAwMmtmbG5icTFxZ3ZkdncifQ.P9MBej1xacybKcDN_jehvw';
+         let map = new mapboxgl.Map({
+             container: 'map', // container ID
+             style: 'mapbox://styles/mapbox/dark-v10',
+             zoom: 10.5, // starting zoom
+             center: [-122.43040, 47.6099614] // starting center
+         });
+         function toggleLayer(layerId) {
+         var visibility = map.getLayoutProperty(layerId, 'visibility');
+         if (visibility === 'visible') {
+             map.setLayoutProperty(layerId, 'visibility', 'none');
+             document.getElementById('toggle-' + layerId).classList.remove('active');
+         } else {
+             map.setLayoutProperty(layerId, 'visibility', 'visible');
+             document.getElementById('toggle-' + layerId).classList.add('active');
+         }
+         }
+         
+         
+        map.on('load', () => {
+         map.addSource('base-map', {
+             'type': 'raster',
+             'tiles': [
+                 'assets/uw/{z}/{x}/{y}.png'
+             ],
+             'tileSize': 256,
+         });
+         
+         map.addSource('streets', {
+             'type': 'raster',
+             'tiles': ['https://a.tile.openstreetmap.org/{z}/{x}/{y}.png'],
+             'tileSize': 256,
+         });
+         
+         map.addSource('urban-areas', {
+             'type': 'geojson',
+             'data': 'assets/urbancenters.geojson'
+         });
+         
+         map.addSource('black-history-month-theme', {
+             'type': 'raster',
+             'tiles': [
+                 'assets/bh/{z}/{x}/{y}.png'
+             ],
+             'tileSize': 256
+         });
+         
+         map.addLayer({
+             'id': 'base-map',
+             'type': 'raster',
+             'source': 'base-map',
+             'layout': {'visibility': 'none'}
+         });
+         
+         map.addLayer({
+             'id': 'streets',
+             'type': 'raster',
+             'source': 'streets',
+             'layout': {'visibility': 'none'}
+         });
+         
+         map.addLayer({
+             'id': 'black-history-month-theme',
+             'type': 'raster',
+             'source': 'black-history-month-theme',
+             'layout': {'visibility': 'none'}
+         });
+         
+         map.addLayer({
+             'id': 'urban-areas',
+             'type': 'fill',
+             'source': 'urban-areas',
+             'layout': {'visibility': 'none'},
+             'paint': {
+                 'fill-color': 'lightgreen',
+                 'fill-opacity': 0.8
+             }
+         });
+        var nav = new mapboxgl.NavigationControl();
+        map.addControl(nav, 'bottom-right');
+
+         });
+         // Layer toggling logic
+         map.on('idle', () => {
+         const toggleableLayerIds = [
+             { id: 'base-map', name: 'Base Map' },
+             { id: 'streets', name: 'Streets' },
+             { id: 'urban-areas', name: 'Urban Areas' },
+             { id: 'black-history-month-theme', name: 'Black History Month Theme' }
+         ];
+         
+         toggleableLayerIds.forEach(function(layer) {
+             let link = document.getElementById(layer.id);
+             if (!link) {
+                 link = document.createElement('a');
+                 link.id = layer.id;
+                 link.href = '#';
+                 link.textContent = layer.name;
+                 link.onclick = function (e) {
+                     e.preventDefault();
+                     e.stopPropagation();
+                     
+                     let visibility = map.getLayoutProperty(layer.id, 'visibility');
+                     
+                     if (visibility === 'visible') {
+                         map.setLayoutProperty(layer.id, 'visibility', 'none');
+                         this.className = '';
+                     } else {
+                         this.className = 'active';
+                         map.setLayoutProperty(layer.id, 'visibility', 'visible');
+                     }
+                 };
+                 
+                 let layers = document.getElementById('menu');
+                 layers.appendChild(link);
+             }
+         });
+         });
+      </script>
+   </body>
+</html>

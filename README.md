@@ -22,6 +22,7 @@ You can view and interact with the map [here](https://anthonykminsu.github.io/Ne
 - Streets Layer: Provides detailed street maps for easy navigation. The zoom level in this case also goes over 14 and also had unlimited min zoom.
 - Location: Seattle, Washington
 
+
 ---
 
 <img width="720" alt="Screen Shot 2024-03-08 at 12 13 41 AM" src="https://github.com/anthonykminsu/NewTmapApplication/assets/77130958/5f17f0cd-6bea-4571-9e51-decaccae2e77">

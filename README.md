@@ -4,20 +4,22 @@
 Tile Mapping Application of Seattle
 
 ## Introduction
-This interactive web map provides a platform for exploring different layers of Seattle's landscape, emphasizing its rich culinary and cultural heritage. The map combines a user-friendly interface with various visual layers that represent the city's streets, urban centers, and areas of cultural significance, especially those relevant during Black History Month.
+This interactive web map provides a platform for exploring different layers of Seattle's landscape, emphasizing its rich cultural history and landscape. The map combines a user-friendly interface with various visual layers that represent the city's streets, urban centers, and areas of cultural significance, especially relating to the relevant event of Black History Month.
 
 ## Map Access
-You can view and interact with the map [here](#). (Note: Replace the hash (#) with the actual URL where the web map is hosted.)
+You can view and interact with the map [here](https://anthonykminsu.github.io/NewTmapApplication/). (Note: Replace the hash (#) with the actual URL where the web map is hosted.)
 
 ## Screenshots
-- Base Map Layer: Shows a simple dark-themed layout of Seattle.
-- Streets Layer: Provides detailed street maps for easy navigation.
-- Urban Areas Layer: Derived from Seattle’s open data, highlighting urban centers.
-- Black History Month Theme Layer: Emphasizes locations significant to Black History Month.
+- Base Map Layer: Shows a simple dark-themed layout of Seattle. The zoom level in this case goes over 14 and has unlimited min zoom due to tile sourcing.
+Location: Seattle, Washington
+- Streets Layer: Provides detailed street maps for easy navigation. The zoom level in this case also goes over 14 and also had unlimited min zoom.
+Location: Seattle, Washington
+- Urban Areas Layer: Derived from Seattle’s open data, highlighting urban centers. The zoom level in this case is 12-22 for the best view.
+Location: Seattle, Washington
+- Black History Month Theme Layer: Emphasizes locations significant to Black History Month. The max zoom level in this is 11 and the min zoom is 3.
+Location: Redmond, Oregon
 
-(Please include the actual screenshots as per your repository or documentation storage policy.)
-
-## Geographic Area Examined
+## Geographic Area Examined (Location)
 The map focuses on the Seattle area, encompassing urban centers, commercial hubs, and regions of cultural significance.
 
 ## Zoom Levels
@@ -26,7 +28,7 @@ Each tile set within the map can be viewed at various zoom levels, allowing user
 - Base Map: Zoom levels 0-22
 - Streets: Zoom levels 0-22
 - Urban Areas: Zoom levels 12-22 (for detailed viewing)
-- Black History Month Theme: Zoom levels 0-22
+- Black History Month Theme: Zoom levels 3-11
 
 ## Descriptions of Each Tile Set
 - Base Map: A dark mode base map that provides a subtle backdrop to other data layers.
@@ -35,15 +37,15 @@ Each tile set within the map can be viewed at various zoom levels, allowing user
 - Black History Month Theme: Themed layer utilizing the colors of unity and pride, symbolizing important locations for Black history in Seattle.
 
 ## Libraries in Use
-- Mapbox GL JS v2.8.1
-- Leaflet CSS v0.7.2
-- jQuery UI CSS v1.10.4
+- Mapbox GL JS
+- Leaflet CSS
+- jQuery UI CSS
 
 ## Data Sources
 The "Urban Areas" layer data is sourced from the [City of Seattle’s open data platform](https://data-seattlecitygis.opendata.arcgis.com/).
 
 ## Credit
-This map application was created by Anthony Kim as part of a project at the University of Washington.
+This map application was created by me Anthony Kim as part of a lab at the University of Washington.
 
 ## Acknowledgment
-Special thanks to the City of Seattle for providing open data which makes this map a valuable resource for locals and visitors alike.
+Special thanks to the City of Seattle and Professor Zhao for providing open data which makes this map a valuable resource for locals and visitors alike. Shoutout to Liz for help on GIS techniques.

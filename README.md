@@ -12,7 +12,7 @@ You can view and interact with the map [here](https://anthonykminsu.github.io/Ne
 
 ## Screenshots
 <img width="720" alt="Screen Shot 2024-03-08 at 12 13 32 AM" src="https://github.com/anthonykminsu/NewTmapApplication/assets/77130958/4f9ce2e2-a51f-42cf-8e3a-694a9dbe1398">
-- Base Map Layer: Shows a simple dark-themed layout of Seattle. The zoom level in this case goes over 14 and has unlimited min zoom due to tile sourcing.
+- Base Map Layer: Shows a simple dark-themed layout of Seattle. The zoom level in this case goes over 14 and has unlimited min zoom due to tile sourcing./
 Location: Seattle, Washington  
 
 ---
